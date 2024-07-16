@@ -32,6 +32,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.stream.Collectors;
+import java.util.Objects;
 
 @Path("feeds/{id}/trips")
 public class TripController {
@@ -182,10 +183,11 @@ public class TripController {
     }
 
     public static boolean wildCardFilter(SearchCriteria searchCriteria, Entry entry) {
-      return entry.tripId.contains(searchCriteria.value())
-             || entry.routeId.contains(searchCriteria.value())
-             || entry.routeShortName.contains(searchCriteria.value())
-             || entry.routeLongName.contains(searchCriteria.value());
+      String searchValue = searchCriteria.value();
+      return Objects.toString(entry.tripId, "").contains(searchValue)
+              || Objects.toString(entry.routeId, "").contains(searchValue)
+              || Objects.toString(entry.routeShortName, "").contains(searchValue)
+              || Objects.toString(entry.routeLongName, "").contains(searchValue);
     }
   }
 }

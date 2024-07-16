@@ -76,10 +76,15 @@ public class PresetFeedController {
   }
 
   private boolean nameFilter(SearchCriteria searchCriteria, Pattern pattern) {
-    return pattern.route().route_short_name.contains(searchCriteria.value())
-           || pattern.route().route_long_name.contains(searchCriteria.value());
-  }
+    if (pattern == null || pattern.route() == null || searchCriteria == null || searchCriteria.value() == null) {
+      return false;
+    }
 
+    String searchValue = searchCriteria.value().toLowerCase();
+
+    return (pattern.route().route_short_name != null && pattern.route().route_short_name.toLowerCase().contains(searchValue))
+            || (pattern.route().route_long_name != null && pattern.route().route_long_name.toLowerCase().contains(searchValue));
+  }
 
   @GET
   @Path("{tripId}")
