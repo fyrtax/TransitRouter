@@ -1,12 +1,12 @@
 <template>
   <v-map :bounds="bounds">
     <l-animated-polyline :lat-lngs="route.generatedShape"
-                         :options="{'delay': 2400, offset: 5}"
+                         :options="{'delay': 2400, offset: -1}"
                          @ready="setBounds">
     </l-animated-polyline>
 
     <l-animated-polyline :lat-lngs="route.originalShape"
-                         :options="{'delay': 2400, 'color': '#000', offset: 2}"
+                         :options="{'delay': 2400, 'color': '#000', offset: 1}"
     ></l-animated-polyline>
 
     <l-circle-marker v-for="(stop, i) in route.stops"
@@ -22,8 +22,8 @@
 
     <l-control position="bottomleft">
       <div class="flex gap-5 px-2 bg-white">
-        <span class="text-blue-600">original shape</span>
-        <span class="text-black">generated shape</span>
+        <span class="text-blue-600">generated shape</span>
+        <span class="text-black">original shape</span>
         <span class="text-red-600">stop</span>
       </div>
     </l-control>

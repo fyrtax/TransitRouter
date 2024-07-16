@@ -41,3 +41,4 @@ mix-manifest.json
 /storage/
 /backend/storage_test/
 /frontend/dist/
+/frontend/node
